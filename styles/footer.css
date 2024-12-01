@@ -23,8 +23,10 @@ footer {
     line-height: 3rem;
     word-break: break-all;
   }
+
+  &.show-result {
+    display: block;
+  }
 }
 
-.show-result {
-  display: block;
-}
+
