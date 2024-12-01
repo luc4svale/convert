@@ -8,3 +8,12 @@ const GBP = 7.60
 const form = document.querySelector("form");
 const amount = document.querySelector("#amount");
 const currency = document.querySelector("#currency");
+
+
+
+//Manipulando input amount para aceitar apenas números
+amount.oninput = () => {
+  const noNumberRegex = /[^0-9]/g;
+  amount.value = amount.value.replace(noNumberRegex, "");
+}
+
