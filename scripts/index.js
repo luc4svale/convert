@@ -17,3 +17,26 @@ amount.oninput = () => {
   amount.value = amount.value.replace(noNumberRegex, "");
 }
 
+//Capturando o evento de submit (enviar) do formulário
+form.onsubmit = (event) => {
+  event.preventDefault();
+
+  switch(currency.value){
+    case "USD":
+      convertCurrency(amount.value, USD, "USD");
+      break;
+    case "EUR":
+      convertCurrency(amount.value, EUR, "EUR");
+      break;
+    case "GBP":
+      convertCurrency(amount.value, GBP, "GBP");
+      break;
+  }
+  
+  
+}
+
+//Função de conversão de moedas
+function convertCurrency(amount, price, symbol){
+  
+}
