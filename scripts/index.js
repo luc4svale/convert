@@ -10,6 +10,7 @@ const amount = document.querySelector("#amount")
 const currency = document.querySelector("#currency")
 const footer = document.querySelector("main footer")
 const description = document.querySelector("#description")
+const result = document.querySelector("#result")
 
 
 
@@ -42,14 +43,33 @@ form.onsubmit = (event) => {
 function convertCurrency(amount, price, symbol){
 
   try {
+
+    //Validando se o valor digitado é um número
+    if(isNaN(amount)){
+      throw new Error("Por favor, digite o valor corretamente para converter");
+    }
+
+    //Manipulando a descrição da conversão conforme moeda selecionada
     description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`;
 
-    //Adicionando a classe que torna o footer visível
+    //Caculando o valor total convertido
+    let total = amount * price;
+
+    //Formatando o valor total para real brasileiro sem o "R$"
+    total = formatCurrencyBRL(total).replace("R$", "");
+
+    //Mostrando o valor total
+    result.textContent = `${total} Reais`;
+
+    //Adicionando classe que torna o footer visível
     footer.classList.add('show-result');
+
   } catch (error) {
+    //Removendo classe que torna o footer visível
     footer.classList.remove('show-result');
-    console.log(error)
-    alert("Não foi possível realizar a conversão. Por favor, tente novamente mais tarde")
+
+    //Exibindo alerta de erro dinâmico
+    alert(`Não foi possível realizar a conversão. ${error.message}`)
   }
   
 }
