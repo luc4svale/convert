@@ -1,0 +1,7 @@
+main {
+  width: 480px;
+  border-radius: 1.5rem;
+
+  border: 1px solid #2f3279;
+  overflow-y: hidden;
+}
