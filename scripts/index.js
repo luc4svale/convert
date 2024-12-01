@@ -5,9 +5,11 @@ const GBP = 7.60
 
 
 //Obtendo elementos do formulário
-const form = document.querySelector("form");
-const amount = document.querySelector("#amount");
-const currency = document.querySelector("#currency");
+const form = document.querySelector("form")
+const amount = document.querySelector("#amount")
+const currency = document.querySelector("#currency")
+const footer = document.querySelector("main footer")
+const description = document.querySelector("#description")
 
 
 
@@ -23,13 +25,13 @@ form.onsubmit = (event) => {
 
   switch(currency.value){
     case "USD":
-      convertCurrency(amount.value, USD, "USD");
+      convertCurrency(amount.value, USD, "US$");
       break;
     case "EUR":
-      convertCurrency(amount.value, EUR, "EUR");
+      convertCurrency(amount.value, EUR, "€");
       break;
     case "GBP":
-      convertCurrency(amount.value, GBP, "GBP");
+      convertCurrency(amount.value, GBP, "£");
       break;
   }
   
@@ -38,5 +40,16 @@ form.onsubmit = (event) => {
 
 //Função de conversão de moedas
 function convertCurrency(amount, price, symbol){
+  
+  try {
+    description.textContent = `${symbol} 1 = R$ ${price}`;
+
+    //Adicionando a classe que torna o footer visível
+    footer.classList.add('show-result');
+  } catch (error) {
+    footer.classList.remove('show-result');
+    console.log(error)
+    alert("Não foi possível realizar a conversão. Por favor, tente novamente mais tarde")
+  }
   
 }
