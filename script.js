@@ -2,6 +2,10 @@ const form = document.querySelector('form')
 const amountToConvert = form.querySelector('#amount')
 const currency = form.querySelector('#currency')
 
+const footer = document.querySelector('footer')
+const footerDescription = footer.querySelector('#description')
+const footerResult = footer.querySelector('#result')
+
 amountToConvert.oninput = () => {
   const notDigitsRegex = /\D+/g
   amountToConvert.value = amountToConvert.value.replace(notDigitsRegex, '')
@@ -18,15 +22,19 @@ form.onsubmit = async (event) => {
   if (!validCurrencies.includes(currency.value)) {
     return alert('Não foi possível realizar a conversão. Por favor, escolha uma moeda válida.')
   }
+
   const currencySymbol = getCurrencySymbol(currency.value)
   const rate = await getExchangeRate(currency.value)
+  const amountConverted = Number(amountToConvert.value) * rate
+
+  return showConversionResult(currencySymbol, rate, amountConverted)
 }
 
 
 function getCurrencySymbol(currency) {
   let symbol
 
-  switch(currency) {
+  switch (currency) {
     case 'USD':
       symbol = 'US$'
       break
@@ -57,7 +65,14 @@ async function getExchangeRate(currency) {
     return rate
 
   } catch {
-      alert('Não foi possível realizar a conversão. Por favor, tente novamente mais tarde.')
-      window.location.reload()
+    alert('Não foi possível realizar a conversão. Por favor, tente novamente mais tarde.')
+    window.location.reload()
   }
+}
+
+function showConversionResult(currencySymbol, rate, convertedValue) {
+  footerDescription.textContent = `${currencySymbol} 1 = R$ ${rate}`
+  footerResult.textContent = `${convertedValue} Reais`
+
+  footer.classList.add('show-result')
 }
