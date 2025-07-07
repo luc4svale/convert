@@ -55,14 +55,14 @@ Além disso, personalizei o projeto original com:
 ## 📂 Como usar
 
 1. Clone este repositório:
-   ```bash
-   git clone https://github.com/luc4svale/convert.git
-   ```
+    ```bash
+    git clone https://github.com/luc4svale/convert.git
+    ```
 
 2. Acesse o diretório:
-  ```bash
-  cd convert
-  ```
+    ```bash
+    cd convert
+    ```
 
 3. Abra o `index.html` no navegador.
 
