@@ -71,8 +71,16 @@ async function getExchangeRate(currency) {
 }
 
 function showConversionResult(currencySymbol, rate, convertedValue) {
-  footerDescription.textContent = `${currencySymbol} 1 = R$ ${rate}`
-  footerResult.textContent = `${convertedValue} Reais`
+  footerDescription.textContent = `${currencySymbol} 1 = ${formatToBRLCurrencyStyle(rate)}`
+  footerResult.textContent = `${formatToBRLCurrencyStyle(convertedValue).replace('R$', '')} Reais`
 
   footer.classList.add('show-result')
+}
+
+function formatToBRLCurrencyStyle(value) {
+  return Number(value).toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    maximumFractionDigits: 2
+  })
 }
