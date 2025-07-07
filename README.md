@@ -20,9 +20,9 @@ Durante esse projeto, exercitei conceitos fundamentais como:
 
 Além disso, personalizei o projeto original com:
 
-✅ **Estilização adaptada e responsiva**
-✅ **Integração com API de câmbio** (`https://economia.awesomeapi.com.br`) para conversões reais  
-✅ **Validação de formulário** e **tratamento de erros**
+- **Estilização adaptada e responsiva**
+- **Integração com API de câmbio** (`https://economia.awesomeapi.com.br`) para conversões reais  
+- **Validação de formulário** e **tratamento de erros**
 
 ---
 
