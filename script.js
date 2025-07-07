@@ -18,4 +18,28 @@ form.onsubmit = async (event) => {
   if (!validCurrencies.includes(currency.value)) {
     return alert('Não foi possível realizar a conversão. Por favor, escolha uma moeda válida.')
   }
+
+  const rate = await getExchangeRate(currency.value)
+}
+
+async function getExchangeRate(currency) {
+
+  try {
+    const response = await fetch(`https://economia.awesomeapi.com.br/last/${currency}-BRL`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+
+    const data = await response.json()
+    const currencyKey = `${currency}BRL`
+    const rate = Number(data[currencyKey].bid)
+
+    return rate
+
+  } catch {
+      alert('Não foi possível realizar a conversão. Por favor, tente novamente mais tarde.')
+      window.location.reload()
+  }
 }
